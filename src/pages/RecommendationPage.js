@@ -20,7 +20,7 @@ function RecommendationPage({ addToPlaylist }) {
   };
 
   return (
-    <div style={{ position: "relative" }}>
+    <div className="recommendation-page">
       <h2>🎧 “{input}” 분위기의 추천 곡</h2>
       <ul className="recommendation-list">
         {tracks.map((track) => (
@@ -34,32 +34,9 @@ function RecommendationPage({ addToPlaylist }) {
       </ul>
 
       {showSidebar && (
-        <div
-          style={{
-            position: "fixed",
-            top: "50%",
-            right: "0",
-            transform: "translateY(-50%)",
-            background: "#fff",
-            border: "1px solid #ccc",
-            padding: "16px",
-            boxShadow: "-2px 0 5px rgba(0,0,0,0.2)",
-            zIndex: 1000,
-          }}
-        >
+        <div className="sidebar">
           <p>🎶 저장 완료!</p>
-          <button
-            onClick={() => navigate("/playlist")}
-            style={{
-              marginTop: "8px",
-              padding: "8px 12px",
-              background: "#6b8e23",
-              color: "white",
-              border: "none",
-              borderRadius: "4px",
-              cursor: "pointer",
-            }}
-          >
+          <button onClick={() => navigate("/playlist")}>
             👉 내 플레이리스트 보러가기
           </button>
         </div>

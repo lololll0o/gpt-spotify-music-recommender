@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HashRouter as Router, Routes, Route, Link } from "react-router-dom";
 import HomePage from "./pages/Homepage";
+import InputPage from "./pages/InputPage";
 import RecommendationPage from "./pages/RecommendationPage";
 import PlaylistPage from "./pages/PlaylistPage";
 import "./styles/App.css";
@@ -47,6 +48,7 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/input" element={<InputPage />} />
             <Route
               path="/recommendation"
               element={<RecommendationPage addToPlaylist={addToPlaylist} />}

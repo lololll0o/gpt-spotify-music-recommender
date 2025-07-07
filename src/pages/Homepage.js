@@ -1,41 +1,39 @@
-// src/pages/Homepage.js
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { extractKeywordFromText } from "../utils/gpt";
-import { getSpotifyTracksByKeyword } from "../utils/spotify";
+import "../styles/App.css"
 
 function HomePage({ isSidebarOpen, setSidebarOpen }) {
-  const [input, setInput] = useState("");
   const navigate = useNavigate();
 
-
-  const handleSubmit = async () => {
-    if (!input.trim()) return;
-
-    const keyword = await extractKeywordFromText(input);
-    const tracks = await getSpotifyTracksByKeyword(keyword);
-
-    navigate("/recommendation", {
-      state: { input, keyword, tracks }
-    });
+  const handleBoxClick = (target) => {
+    if (target === "input") {
+      navigate("/input"); // ✅ 수정된 부분: '/recommendation' → '/input'
+    } else if (target === "playlist") {
+      navigate("/playlist");
+    } else if (target === "music") {
+      alert("추후 업데이트 예정입니다.");
+    }
   };
 
   return (
     <div className="main-content">
-      <h1>🎧 지금 듣고 싶은 그 음악</h1>
-      <p>듣고 싶은 음악 스타일을 자유롭게 입력해주세요</p>
+      <h1>🎧 당신을 위한 오늘의 플레이리스트</h1>
 
-      <textarea
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        placeholder="예: 퇴근길, 잔잔하고 따뜻한 노래 추천해줘"
-        rows={4}
-        className="input-box"
-      />
-      <br />
-      <button onClick={handleSubmit} className="submit-button">
-        🎵 AI 분석 후 추천 받기
-      </button>
+      <div className="box-container">
+        <div className="select-box" onClick={() => handleBoxClick("input")}>
+          <span>
+            AI가 골라주는,<br />너만의 감성 노래
+          </span>
+        </div>
+        <div className="select-box" onClick={() => handleBoxClick("music")}>
+          <span>
+            지금 시간에<br />어울리는 노래
+          </span>
+        </div>
+        <div className="select-box" onClick={() => handleBoxClick("playlist")}>
+          저장된 플레이리스트
+        </div>
+      </div>
     </div>
   );
 }
