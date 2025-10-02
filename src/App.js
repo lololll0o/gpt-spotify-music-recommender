@@ -9,12 +9,16 @@ import "./styles/App.css";
 function App() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const [playlist, setPlaylist] = useState([]);
+  const [isPlaylistPopupOpen, setPlaylistPopupOpen] = useState(false);
 
   const addToPlaylist = (track) => {
-    // 중복 방지
     if (!playlist.find((t) => t.id === track.id)) {
       setPlaylist([...playlist, track]);
     }
+    setPlaylistPopupOpen(true);
+    setTimeout(() => {
+      setPlaylistPopupOpen(false);
+    }, 3000);
   };
 
   const removeFromPlaylist = (id) => {
@@ -59,6 +63,20 @@ function App() {
             />
           </Routes>
         </main>
+        {isPlaylistPopupOpen && (
+          <div className="playlist-popup">
+            <p>✅ 플레이리스트에 곡을 담았습니다!</p>
+            <Link to="/playlist" onClick={() => setPlaylistPopupOpen(false)}>
+              ▶ 내 플레이리스트 바로가기
+            </Link>
+            <button
+              className="close-popup-btn"
+              onClick={() => setPlaylistPopupOpen(false)}
+            >
+              ✕ 닫기
+            </button>
+          </div>
+        )}
       </div>
     </Router>
   );

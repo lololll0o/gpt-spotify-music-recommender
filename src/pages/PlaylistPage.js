@@ -1,4 +1,3 @@
-// pages/PlaylistPage.js
 import React from "react";
 
 function PlaylistPage({ playlist = [], removeFromPlaylist = () => {} }) {

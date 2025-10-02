@@ -7,7 +7,7 @@ function HomePage({ isSidebarOpen, setSidebarOpen }) {
 
   const handleBoxClick = (target) => {
     if (target === "input") {
-      navigate("/input"); // ✅ 수정된 부분: '/recommendation' → '/input'
+      navigate("/input");
     } else if (target === "playlist") {
       navigate("/playlist");
     } else if (target === "music") {
